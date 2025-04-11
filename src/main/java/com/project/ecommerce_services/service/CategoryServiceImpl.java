@@ -19,13 +19,18 @@ import com.project.ecommerce_services.repository.CategoryRepository;
 
 @Service
 public class CategoryServiceImpl implements CategoryService{
-	@Autowired
+	
     private CategoryRepository categoryRepository;
-
-    @Autowired
     private ModelMapper modelMapper;
+    
 
-    @Override
+    public CategoryServiceImpl(CategoryRepository categoryRepository, ModelMapper modelMapper) {
+		super();
+		this.categoryRepository = categoryRepository;
+		this.modelMapper = modelMapper;
+	}
+
+	@Override
     public CategoryResponse getAllCategories(Integer pageNumber, Integer pageSize, String sortBy, String sortOrder) {
         Sort sortByAndOrder = sortOrder.equalsIgnoreCase("asc")
                 ? Sort.by(sortBy).ascending()
