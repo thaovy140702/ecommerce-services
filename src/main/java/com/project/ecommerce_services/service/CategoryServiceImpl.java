@@ -3,7 +3,6 @@ package com.project.ecommerce_services.service;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -82,6 +81,9 @@ public class CategoryServiceImpl implements CategoryService{
                 .orElseThrow(() -> new ResourceNotFoundException("Category","categoryId",categoryId));
 
         Category category = modelMapper.map(categoryDTO, Category.class);
+        Category categoryFromDb = categoryRepository.findByCategoryName(category.getCategoryName());
+        if (categoryFromDb != null)
+            throw new APIException("Category with the name " + category.getCategoryName() + " already exists.");
         category.setCategoryId(categoryId);
         savedCategory = categoryRepository.save(category);
         return modelMapper.map(savedCategory, CategoryDTO.class);
