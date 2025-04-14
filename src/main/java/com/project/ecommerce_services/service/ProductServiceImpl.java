@@ -98,6 +98,41 @@ public class ProductServiceImpl implements ProductService {
         productResponse.setLastPage(pageProducts.isLast());
         return productResponse;
     }
+    
+    
+    @Override
+    public ProductDTO getProductById(Long productId) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new ResourceNotFoundException("Product", "productId", productId));
+        return modelMapper.map(product, ProductDTO.class);
+    }
+    
+    @Override
+    public ProductResponse getFeaturedProducts(Integer pageNumber, Integer pageSize, String sortBy, String sortOrder) {
+        Sort sort = sortOrder.equalsIgnoreCase("asc")
+                ? Sort.by(sortBy).ascending()
+                : Sort.by(sortBy).descending();
+
+        Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+        Page<Product> featuredPage = productRepository.findByFeaturedTrue(pageable);
+
+        List<ProductDTO> dtos = featuredPage.getContent()
+                .stream()
+                .map(p -> modelMapper.map(p, ProductDTO.class))
+                .toList();
+
+        ProductResponse response = new ProductResponse();
+        response.setContent(dtos);
+        response.setPageNumber(featuredPage.getNumber());
+        response.setPageSize(featuredPage.getSize());
+        response.setTotalElements(featuredPage.getTotalElements());
+        response.setTotalPages(featuredPage.getTotalPages());
+        response.setLastPage(featuredPage.isLast());
+
+        return response;
+    }
+
+
 
     @Override
     public ProductResponse searchByCategory(Long categoryId, Integer pageNumber, Integer pageSize, String sortBy, String sortOrder) {
@@ -181,6 +216,7 @@ public class ProductServiceImpl implements ProductService {
         productFromDb.setQuantity(productDTO.getQuantity());
         productFromDb.setDiscount(productDTO.getDiscount());
         productFromDb.setPrice(productDTO.getPrice());
+        productFromDb.setFeatured(productDTO.isFeatured());
 
         double specialPrice = productDTO.getPrice() -
                 ((productDTO.getDiscount() * 0.01) * productDTO.getPrice());

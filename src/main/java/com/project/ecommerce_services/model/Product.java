@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Product {
+public class Product extends BaseModel{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long productId;
@@ -40,4 +40,8 @@ public class Product {
     private Category category;
     
     private String imagePublicId;
+    
+    private boolean featured;
+    private double averageRating;
+    
 }

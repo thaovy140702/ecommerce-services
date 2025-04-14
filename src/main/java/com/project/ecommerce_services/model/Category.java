@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Category {
+public class Category extends BaseModel{
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
