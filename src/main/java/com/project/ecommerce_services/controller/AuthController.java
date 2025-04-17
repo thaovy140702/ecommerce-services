@@ -6,6 +6,8 @@ import com.project.ecommerce_services.model.Customer;
 import com.project.ecommerce_services.model.Role;
 import com.project.ecommerce_services.model.User;
 import com.project.ecommerce_services.model.enums.ERole;
+import com.project.ecommerce_services.payload.APIResponse;
+import com.project.ecommerce_services.payload.ProfileUpdateRequest;
 import com.project.ecommerce_services.repository.CustomerRepository;
 import com.project.ecommerce_services.repository.RoleRepository;
 import com.project.ecommerce_services.repository.UserRepository;
@@ -118,13 +120,14 @@ public class AuthController {
         return ResponseEntity.ok("Logged out successfully!");
     }
     
-    @GetMapping("/me")
-    public ResponseEntity<UserInfoResponse> getUserInfo() {
+    
+    @GetMapping("/user/profile")
+    public ResponseEntity<UserInfoResponse> getProfile() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String email = authentication.getName();
         
         User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User", "email", email));
         
         Customer customer = customerRepository.findById(user.getId())
                 .orElse(new Customer());
@@ -139,5 +142,26 @@ public class AuthController {
         );
 
         return ResponseEntity.ok(response);
+    }
+
+    @Transactional
+    @PutMapping("/user/profile")
+    public ResponseEntity<APIResponse> updateProfile(@Valid @RequestBody ProfileUpdateRequest request) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "email", email));
+        
+        Customer customer = customerRepository.findById(user.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Customer", "id", user.getId()));
+        
+        customer.setFirstName(request.getFirstName());
+        customer.setLastName(request.getLastName());
+        customer.setAddress(request.getAddress());
+        customer.setPhone(request.getPhone());
+        customerRepository.save(customer);
+
+        return ResponseEntity.ok(new APIResponse("Profile updated successfully!", true));
     }
 }
