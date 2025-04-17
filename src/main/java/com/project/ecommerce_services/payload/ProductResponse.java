@@ -4,16 +4,15 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductResponse {
+@EqualsAndHashCode(callSuper=false)
+
+public class ProductResponse extends BaseResponse{
 	private List<ProductDTO> content;
-    private Integer pageNumber;
-    private Integer pageSize;
-    private Long totalElements;
-    private Integer totalPages;
-    private boolean lastPage;
 }
+   
