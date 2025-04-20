@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.ecommerce_services.config.AppConstants;
-import com.project.ecommerce_services.payload.CategoryDTO;
-import com.project.ecommerce_services.payload.CategoryResponse;
+import com.project.ecommerce_services.payload.category.CategoryDTO;
+import com.project.ecommerce_services.payload.category.CategoryResponse;
 import com.project.ecommerce_services.service.CategoryService;
 
 import jakarta.validation.Valid;

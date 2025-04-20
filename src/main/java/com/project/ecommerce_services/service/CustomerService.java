@@ -2,8 +2,8 @@ package com.project.ecommerce_services.service;
 
 import java.util.List;
 
-import com.project.ecommerce_services.payload.CustomerResponse;
-import com.project.ecommerce_services.payload.CustomerUpdateRequest;
+import com.project.ecommerce_services.payload.customer.CustomerResponse;
+import com.project.ecommerce_services.payload.customer.CustomerUpdateRequest;
 
 public interface CustomerService {
     List<CustomerResponse> getAllCustomers();

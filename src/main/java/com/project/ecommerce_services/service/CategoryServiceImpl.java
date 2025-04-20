@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import com.project.ecommerce_services.exceptions.APIException;
 import com.project.ecommerce_services.exceptions.ResourceNotFoundException;
 import com.project.ecommerce_services.model.Category;
-import com.project.ecommerce_services.payload.CategoryDTO;
-import com.project.ecommerce_services.payload.CategoryResponse;
+import com.project.ecommerce_services.payload.category.CategoryDTO;
+import com.project.ecommerce_services.payload.category.CategoryResponse;
 import com.project.ecommerce_services.repository.CategoryRepository;
 
 @Service

@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.ecommerce_services.config.AppConstants;
-import com.project.ecommerce_services.payload.ProductDTO;
-import com.project.ecommerce_services.payload.ProductResponse;
+import com.project.ecommerce_services.payload.product.ProductDTO;
+import com.project.ecommerce_services.payload.product.ProductResponse;
 import com.project.ecommerce_services.service.ProductService;
 
 import jakarta.validation.Valid;
@@ -101,7 +101,7 @@ public class ProductController {
         return new ResponseEntity<>(deletedProduct, HttpStatus.OK);
     }
 
-    @PutMapping("/products/{productId}/image")
+    @PutMapping("/admin/products/{productId}/image")
     public ResponseEntity<ProductDTO> updateProductImage(@PathVariable Long productId,
                                                          @RequestParam("image")MultipartFile image) throws IOException {
         ProductDTO updatedProduct = productService.updateProductImage(productId, image);
