@@ -1,8 +1,8 @@
 package com.project.ecommerce_services.controller;
 
 import com.project.ecommerce_services.payload.APIResponse;
-import com.project.ecommerce_services.payload.CustomerResponse;
-import com.project.ecommerce_services.payload.CustomerUpdateRequest;
+import com.project.ecommerce_services.payload.customer.CustomerResponse;
+import com.project.ecommerce_services.payload.customer.CustomerUpdateRequest;
 import com.project.ecommerce_services.service.CustomerService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

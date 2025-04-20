@@ -7,7 +7,7 @@ import com.project.ecommerce_services.model.Role;
 import com.project.ecommerce_services.model.User;
 import com.project.ecommerce_services.model.enums.ERole;
 import com.project.ecommerce_services.payload.APIResponse;
-import com.project.ecommerce_services.payload.ProfileUpdateRequest;
+import com.project.ecommerce_services.payload.user.ProfileUpdateRequest;
 import com.project.ecommerce_services.repository.CustomerRepository;
 import com.project.ecommerce_services.repository.RoleRepository;
 import com.project.ecommerce_services.repository.UserRepository;
