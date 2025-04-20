@@ -1,4 +1,4 @@
-package com.project.ecommerce_services.payload;
+package com.project.ecommerce_services.payload.customer;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.ecommerce_services.payload.ProductDTO;
-import com.project.ecommerce_services.payload.ProductResponse;
+import com.project.ecommerce_services.payload.product.ProductDTO;
+import com.project.ecommerce_services.payload.product.ProductResponse;
 
 import jakarta.validation.Valid;
 

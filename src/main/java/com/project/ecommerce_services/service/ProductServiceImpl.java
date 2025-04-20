@@ -19,8 +19,8 @@ import com.project.ecommerce_services.exceptions.APIException;
 import com.project.ecommerce_services.exceptions.ResourceNotFoundException;
 import com.project.ecommerce_services.model.Category;
 import com.project.ecommerce_services.model.Product;
-import com.project.ecommerce_services.payload.ProductDTO;
-import com.project.ecommerce_services.payload.ProductResponse;
+import com.project.ecommerce_services.payload.product.ProductDTO;
+import com.project.ecommerce_services.payload.product.ProductResponse;
 import com.project.ecommerce_services.repository.CategoryRepository;
 import com.project.ecommerce_services.repository.ProductRepository;
 

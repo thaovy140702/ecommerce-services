@@ -1,4 +1,4 @@
-package com.project.ecommerce_services.payload;
+package com.project.ecommerce_services.payload.user;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
